@@ -1,8 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-const IMG_CDN_URL =
-  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 const restList = [
   {
     info: {
@@ -750,65 +745,3 @@ const restList = [
     },
   },
 ];
-
-const Header = () => {
-  return (
-    <div className="header">
-      <div className="logo-container">
-        <img
-          className="logo"
-          src="https://www.logodesign.net/logo/smoking-burger-with-lettuce-3624ld.png"
-        />
-      </div>
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-const ResturantCard = (props) => {
-  const { restData } = props;
-  const { cloudinaryImageId, name, avgRating, cuisines, areaName } =
-    restData?.info; // optional chaining
-  return (
-    <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
-      <img className="res-logo" alt="" src={IMG_CDN_URL + cloudinaryImageId} />
-      <h3>{name}</h3>
-      <h4>{cuisines.join(", ")}</h4>
-      <h4>{avgRating}</h4>
-      <h4>{areaName}</h4>
-    </div>
-  );
-};
-
-const Body = () => {
-  return (
-    <div className="body">
-      <div className="search">Search</div>
-      <div className="res-container">
-        {" "}
-        {/* whenever you are using map u should always use key(a unique id) or u can pass index as key but this not good practice*/}
-        {restList.map((restaurant) => (
-          <ResturantCard key={restaurant.info.id} restData={restaurant} />
-        ))}
-      </div>
-    </div>
-  );
-};
-const AppLayout = () => {
-  return (
-    <div className="app">
-      <Header />
-      <Body />
-    </div>
-  );
-};
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
